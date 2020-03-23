@@ -28,7 +28,7 @@ class AddressController extends Controller
      * @param {用户id} 
      * @return: 
      */
-    public function append_Address($user_id){
+    public function add_Address($user_id){
         
     }
 

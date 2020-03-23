@@ -2,7 +2,7 @@
 /*
  * @Author: your name
  * @Date: 2020-02-21 12:08:25
- * @LastEditTime: 2020-03-23 20:41:12
+ * @LastEditTime: 2020-03-23 23:20:27
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Project\yalv\routes\web.php
@@ -26,5 +26,51 @@ Route::get('/', function () {
 
 // 首页路由
 Route::get('/', 'FirstController@index');
-// 分类
+// 获取所有商品分类
 Route::get('/commodity_Categories','ClassController@commodity_Categories');
+// 获取单个商品详细信息
+Route::get('/commodity/{commodity_id}', 'CommodityController@get_commodity');
+// 获取商品分类
+Route::get('/commodity_class/{class_id}','ClassController@commodity_Categories');
+// 获取商品分类下商品
+Route::get('class_commodity/{class_id}','CommodityController@get_class_commodity');
+// 获取品牌下商品
+Route::get('brand/{brand_id}','CommodityController@get_Brand_Commodity');
+
+// 评论点赞
+Route::post('comment/{comment_id}','CommentController@set_Like');
+// 删除评论
+Route::delete('del_comment/{comment_id}','CommentController@delete_Comment');
+// 新增评论
+Route::post('add_comment/{user_id}/{commodity_id}/{comment_id?}','CommentController@append_Comment');
+
+// 获取专题详细信息
+Route::get('thematic/{thematic_id}','ThematicController@getOne_thematic');
+
+// 获取购物车数据
+Route::get('/shopping/{user_id}','ShoppingController@get_Commodity');
+// 修改购物车
+Route::post('alter_shopping/{user_id}/{commodity_id}','CommentController@set_Commodity');
+// 添加商品至购物车
+Route::post('add_shopping/{user_id}/{commodity_id}/{spu_id}','ShoppingController@add_Commodity');
+// 移除商品
+Route::delete('del_shopping/{user+id}/{commodity_id}','ShoppingController@delete_Commodity');
+
+
+// 获取某种状态的订单
+Route::get('get_order/{order_status}','OrderController@get_Status_Order');
+// 获取我的订单
+Route::get('/order/{user_id}','OrderController@get_Order');
+// 生成订单
+Route::post('Generate_orders','OrderController@append_Order');
+// 删除订单
+Route::delete('delete/{order_id}','OrderController@delete_Order');
+
+// 获取我的地址
+Route::get('address/{user_id}','AddressController@get_Address');
+// 新增地址
+Route::post('add_address/{user_id}','AddressController@add_Address');
+// 删除地址
+Route::delete('del_address/{user_id}','AddressController@delete_Address');
+// 修改地址
+Route::post('alter_address/{user_id}/{address_id}','AddressController@set_Address');

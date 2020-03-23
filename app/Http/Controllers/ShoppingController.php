@@ -2,7 +2,7 @@
 /*
  * @Author: your name
  * @Date: 2020-03-23 20:53:02
- * @LastEditTime: 2020-03-23 20:59:48
+ * @LastEditTime: 2020-03-23 23:17:31
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Project\yalv\app\Http\Controllers\ShoppingController.php
@@ -39,6 +39,15 @@ class ShoppingController extends Controller
      * @return: 
      */
     public function set_Commodity($user_id,$commodity_id){
+        
+    }
+
+    /**
+     * @新增商品: 
+     * @param {type} 
+     * @return: 
+     */
+    public function add_Commodity(){
         
     }
 }

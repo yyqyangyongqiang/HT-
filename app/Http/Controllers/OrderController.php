@@ -2,7 +2,7 @@
 /*
  * @Author: your name
  * @Date: 2020-03-23 21:01:22
- * @LastEditTime: 2020-03-23 21:05:48
+ * @LastEditTime: 2020-03-23 23:04:03
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Project\yalv\app\Http\Controllers\OrderController.php
@@ -37,11 +37,18 @@ class OrderController extends Controller
      * @param {用户id,订单id} 
      * @return: 
      */
-    public function delete_Oder($user_id,$order_id){
+    public function delete_Order($user_id,$order_id){
         
     }
 
-    
+    /**
+     * @新增订单: 
+     * @param {type} 
+     * @return: 
+     */
+    public function append_Order(){
+        
+    }
 
     
 }
