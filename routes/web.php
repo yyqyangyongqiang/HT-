@@ -2,7 +2,7 @@
 /*
  * @Author: your name
  * @Date: 2020-02-21 12:08:25
- * @LastEditTime: 2020-03-24 13:38:10
+ * @LastEditTime: 2020-03-24 14:35:02
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Project\yalv\routes\web.php
@@ -78,7 +78,7 @@ Route::post('alter_address/{user_id}/{address_id}','AddressController@set_Addres
 
 // 后台管理接口
 // 获取某一状态商品
-Route::get('commodity/{name}/{commodity_class}/{brand}', 'CommodityController/serch');
+Route::get('commodity/{name}/{commodity_class}/{brand}', 'CommodityController@serch');
 // 获取商品修改日志
 Route::get('commodity_log/{commodity_id}','CommodityController@commodity_log');
 
@@ -86,6 +86,9 @@ Route::get('commodity_log/{commodity_id}','CommodityController@commodity_log');
 Route::get('brand_order/{brand_id}','OrderController@brand_order');
 // 品牌搜索
 Route::get('brand_serch/{order_number}/{address_name}/{order_time}/{pay_status}','OrderController@brand_serch');
+
+// 查看商品日志
+Route::get('commodity_log/{commodity_id}','CommodityLogController@get_log');
 // 数据正常返回：
 // ```json
 // {

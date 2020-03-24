@@ -1,4 +1,12 @@
 <?php
+/*
+ * @Author: your name
+ * @Date: 2020-03-18 20:47:33
+ * @LastEditTime: 2020-03-24 14:06:55
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \Project\yalv\database\migrations\2020_03_18_124733_create_commodity_spu.php
+ */
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -27,6 +35,9 @@ class CreateCommoditySpu extends Migration
             $table->string('Label')->nullable()->comment('商品标签 用于搜索');
             $table->string('image')->comment('商品图片');
             $table->string('parameter')->comment('商品参数')->nullable();
+            $table->enum('grounding', ['true', 'false'])->default(['false'])->comment('是否上架');
+            $table->enum('news', ['true', 'false'])->default(['false'])->comment('是否新品');
+            $table->enum('recommend', ['true', 'false'])->default(['false'])->comment('是否推荐');
 
             $table->string('yuliu2')->comment('预留字段')->nullable();
             $table->string('yuliu3')->comment('预留字段')->nullable();
