@@ -2,8 +2,8 @@
 /*
  * @Author: 笑脸
  * @Date: 2020-03-23 20:01:08
- * @LastEditTime: 2020-03-23 20:40:26
- * @LastEditors: 专题控制器
+ * @LastEditTime: 2020-03-24 23:45:04
+ * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Project\yalv\app\Http\Controllers\ThematicController.php
  */
@@ -11,6 +11,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class ThematicController extends Controller
 {
@@ -21,7 +22,7 @@ class ThematicController extends Controller
      * @return: 
      */
     public function getAll_thematic(){
-        
+        return DB::table('thematic')->get();
     }
 
     /**

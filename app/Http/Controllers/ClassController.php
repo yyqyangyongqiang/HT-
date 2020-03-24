@@ -2,7 +2,7 @@
 /*
  * @Author: 笑脸
  * @Date: 2020-03-23 19:39:08
- * @LastEditTime: 2020-03-23 20:46:20
+ * @LastEditTime: 2020-03-24 23:21:09
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Project\yalv\app\Http\Controllers\ClassController.php
@@ -11,6 +11,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class ClassController extends Controller
 {
@@ -20,7 +21,7 @@ class ClassController extends Controller
      * @return: 
      */
     public function get_brand_class(){
-        
+        return DB::table('brand_class')->pluck('classification_name','brand_class_id');
     }
 
     /**
