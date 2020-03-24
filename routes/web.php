@@ -2,7 +2,7 @@
 /*
  * @Author: your name
  * @Date: 2020-02-21 12:08:25
- * @LastEditTime: 2020-03-23 23:20:27
+ * @LastEditTime: 2020-03-24 13:26:44
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Project\yalv\routes\web.php
@@ -74,3 +74,39 @@ Route::post('add_address/{user_id}','AddressController@add_Address');
 Route::delete('del_address/{user_id}','AddressController@delete_Address');
 // 修改地址
 Route::post('alter_address/{user_id}/{address_id}','AddressController@set_Address');
+
+
+// 后台管理接口
+// 获取某一状态商品
+Route::get('commodity/{name}/{commodity_class}/{brand}', 'BrandController/');
+// 获取商品修改日志
+Route::get('commodity_log/{commodity_id}','CommodityController@commodity_log');
+
+// 根据品牌获取订单
+Route::get('brand_order/{brand_id}','OrderController@brand_order');
+// 品牌搜索
+Route::get('brand_serch/{order_number}/{address_name}/{order_time}/{pay_status}','OrderController@brand_serch');
+// 数据正常返回：
+// ```json
+// {
+//  "code": 1,
+//  "message": "成功",
+//  "data": [{
+//    "imgUrl": "https://hktapi-uat.hongkun.com.cn/img1.png",
+//    "clickUrl": "https://hktapi-uat.hongkun.com.cn/img1.html"
+//   },
+//   {
+//    "imgUrl": "https://hktapi-uat.hongkun.com.cn/img2.png",
+//    "clickUrl": "https://hktapi-uat.hongkun.com.cn/img2.html"
+//   }
+//  ]
+// }
+// ```
+// 错误返回 json示例
+// ```json
+// {
+//  "code": -1,
+//  "message": "失败",
+//  "data": {}
+// }
+// ```

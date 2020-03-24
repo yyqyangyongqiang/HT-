@@ -2,7 +2,7 @@
 /*
  * @Author: 笑脸
  * @Date: 2020-03-23 17:03:11
- * @LastEditTime: 2020-03-23 21:15:45
+ * @LastEditTime: 2020-03-24 13:11:29
  * @LastEditors: Please set LastEditors
  * @Description: 商品控制器
  * @FilePath: \Project\yalv\app\Http\Controllers\commodity.php
@@ -88,5 +88,25 @@ class CommodityController extends Controller
         
     }
 
+    /**
+     * @搜索商品: 
+     * @param {商品名称,商品分类,商品品牌} 
+     * @return: 
+     */
+    public function serch($name,$commodity_class,$brand){
+        
+    }
+
+    /**
+     * @商品修改日志: 
+     * @param {商品id} 
+     * @return: 
+     */
+    public function commodity_log($commodity_id){
+        
+    }
+
+    
+    
     
 }

@@ -2,7 +2,7 @@
 /*
  * @Author: your name
  * @Date: 2020-03-23 21:10:28
- * @LastEditTime: 2020-03-23 21:13:38
+ * @LastEditTime: 2020-03-24 13:19:10
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Project\yalv\app\Http\Controllers\BrandController.php
@@ -12,7 +12,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class BrandController extends Controller
+class CommodityController extends Controller
 {
     /**
      * @获取所有品牌: 
