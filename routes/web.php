@@ -2,7 +2,7 @@
 /*
  * @Author: your name
  * @Date: 2020-02-21 12:08:25
- * @LastEditTime: 2020-03-24 13:26:44
+ * @LastEditTime: 2020-03-24 13:38:10
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Project\yalv\routes\web.php
@@ -78,7 +78,7 @@ Route::post('alter_address/{user_id}/{address_id}','AddressController@set_Addres
 
 // 后台管理接口
 // 获取某一状态商品
-Route::get('commodity/{name}/{commodity_class}/{brand}', 'BrandController/');
+Route::get('commodity/{name}/{commodity_class}/{brand}', 'CommodityController/serch');
 // 获取商品修改日志
 Route::get('commodity_log/{commodity_id}','CommodityController@commodity_log');
 
