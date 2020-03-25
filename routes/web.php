@@ -2,7 +2,7 @@
 /*
  * @Author: your name
  * @Date: 2020-02-21 12:08:25
- * @LastEditTime: 2020-03-24 14:35:02
+ * @LastEditTime: 2020-03-25 16:33:21
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Project\yalv\routes\web.php
@@ -30,7 +30,7 @@ Route::get('/', 'FirstController@index');
 Route::get('/commodity_Categories','ClassController@commodity_Categories');
 // 获取单个商品详细信息
 Route::get('/commodity/{commodity_id}', 'CommodityController@get_commodity');
-// 获取商品分类
+// 获取二级商品分类
 Route::get('/commodity_class/{class_id}','ClassController@commodity_Categories');
 // 获取商品分类下商品
 Route::get('class_commodity/{class_id}','CommodityController@get_class_commodity');
@@ -38,7 +38,7 @@ Route::get('class_commodity/{class_id}','CommodityController@get_class_commodity
 Route::get('brand/{brand_id}','CommodityController@get_Brand_Commodity');
 
 // 评论点赞
-Route::post('comment/{comment_id}','CommentController@set_Like');
+Route::post('comment/{comment_id}/{user_id}','CommentController@set_Like');
 // 删除评论
 Route::delete('del_comment/{comment_id}','CommentController@delete_Comment');
 // 新增评论
