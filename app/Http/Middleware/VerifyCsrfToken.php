@@ -2,7 +2,7 @@
 /*
  * @Author: your name
  * @Date: 2020-02-21 12:08:25
- * @LastEditTime: 2020-03-27 12:32:23
+ * @LastEditTime: 2020-03-27 18:32:30
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Project\yalv\app\Http\Middleware\VerifyCsrfToken.php
@@ -33,6 +33,9 @@ class VerifyCsrfToken extends Middleware
         "comment_like",   // 评论点赞
         "add_shopping",   // 添加商品至购物车
         "alter_shopping", // 修改购物车商品
+        "add_address",    // 新增用户地址
+        "Generate_orders", // 生成订单
+        "delete"           // 删除订单
     ];
 
 }

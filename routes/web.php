@@ -2,7 +2,7 @@
 /*
  * @Author: your name
  * @Date: 2020-02-21 12:08:25
- * @LastEditTime: 2020-03-27 12:31:56
+ * @LastEditTime: 2020-03-27 18:31:54
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Project\yalv\routes\web.php
@@ -58,22 +58,22 @@ Route::delete('del_shopping/{user_id}/{shopping_id}','ShoppingController@delete_
 
 
 // 获取某种状态的订单
-Route::get('get_order/{order_status}','OrderController@get_Status_Order');
+Route::get('get_order/{user_id}/{order_status}','OrderController@get_Status_Order');
 // 获取我的订单
-Route::get('/order/{user_id}','OrderController@get_Order');
+Route::get('order/{user_id}','OrderController@get_Order');
 // 生成订单
 Route::post('Generate_orders','OrderController@append_Order');
 // 删除订单
-Route::delete('delete/{order_id}','OrderController@delete_Order');
+Route::delete('delete','OrderController@delete_Order');
 
 // 获取我的地址
 Route::get('address/{user_id}','AddressController@get_Address');
 // 新增地址
-Route::post('add_address/{user_id}','AddressController@add_Address');
+Route::post('add_address','AddressController@add_Address');
 // 删除地址
 Route::delete('del_address/{user_id}','AddressController@delete_Address');
 // 修改地址
-Route::post('alter_address/{user_id}/{address_id}','AddressController@set_Address');
+Route::post('alter_address','AddressController@set_Address');
 
 
 // 后台管理接口
