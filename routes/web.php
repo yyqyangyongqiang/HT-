@@ -2,7 +2,7 @@
 /*
  * @Author: your name
  * @Date: 2020-02-21 12:08:25
- * @LastEditTime: 2020-03-25 16:33:21
+ * @LastEditTime: 2020-03-27 12:31:56
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Project\yalv\routes\web.php
@@ -19,42 +19,42 @@
 |
 */
 
-Route::get('/', function () {
+// Route::get('/', function () {
 
-    return view('welcome');
-});
+//     return view('welcome');
+// });
 
 // 首页路由
 Route::get('/', 'FirstController@index');
 // 获取所有商品分类
 Route::get('/commodity_Categories','ClassController@commodity_Categories');
 // 获取单个商品详细信息
-Route::get('/commodity/{commodity_id}', 'CommodityController@get_commodity');
+Route::get('/commodity/{commodity_id}', 'CommodityController@get_Commodity');
 // 获取二级商品分类
-Route::get('/commodity_class/{class_id}','ClassController@commodity_Categories');
+Route::get('/commodity_class/{class_id}','ClassController@get_Next_Class');
 // 获取商品分类下商品
-Route::get('class_commodity/{class_id}','CommodityController@get_class_commodity');
+Route::get('class_commodity/{class_id}','CommodityController@get_Class_Commodity');
 // 获取品牌下商品
 Route::get('brand/{brand_id}','CommodityController@get_Brand_Commodity');
 
 // 评论点赞
-Route::post('comment/{comment_id}/{user_id}','CommentController@set_Like');
+Route::post('comment_like','CommentController@set_Like');
 // 删除评论
-Route::delete('del_comment/{comment_id}','CommentController@delete_Comment');
+Route::delete('del_comment','CommentController@delete_Comment');
 // 新增评论
-Route::post('add_comment/{user_id}/{commodity_id}/{comment_id?}','CommentController@append_Comment');
+Route::post('add_comment','CommentController@append_Comment');
 
 // 获取专题详细信息
 Route::get('thematic/{thematic_id}','ThematicController@getOne_thematic');
 
 // 获取购物车数据
-Route::get('/shopping/{user_id}','ShoppingController@get_Commodity');
+Route::get('shopping/{user_id}','ShoppingController@get_Commodity');
 // 修改购物车
-Route::post('alter_shopping/{user_id}/{commodity_id}','CommentController@set_Commodity');
+Route::post('alter_shopping','ShoppingController@set_Commodity');
 // 添加商品至购物车
-Route::post('add_shopping/{user_id}/{commodity_id}/{spu_id}','ShoppingController@add_Commodity');
+Route::post('add_shopping','ShoppingController@add_Commodity');
 // 移除商品
-Route::delete('del_shopping/{user+id}/{commodity_id}','ShoppingController@delete_Commodity');
+Route::delete('del_shopping/{user_id}/{shopping_id}','ShoppingController@delete_Commodity');
 
 
 // 获取某种状态的订单

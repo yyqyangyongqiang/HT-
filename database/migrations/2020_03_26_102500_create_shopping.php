@@ -1,10 +1,18 @@
 <?php
+/*
+ * @Author: your name
+ * @Date: 2020-03-26 18:25:00
+ * @LastEditTime: 2020-03-26 18:26:38
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \Project\yalv\database\migrations\2020_03_26_102500_shopping.php
+ */
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateShoppingCart extends Migration
+class CreateShopping extends Migration
 {
     /**
      * Run the migrations.

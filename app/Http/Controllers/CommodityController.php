@@ -2,7 +2,7 @@
 /*
  * @Author: 笑脸
  * @Date: 2020-03-23 17:03:11
- * @LastEditTime: 2020-03-25 20:05:42
+ * @LastEditTime: 2020-03-26 20:08:55
  * @LastEditors: Please set LastEditors
  * @Description: 商品控制器
  * @FilePath: \Project\yalv\app\Http\Controllers\commodity.php
@@ -21,23 +21,27 @@ class CommodityController extends Controller
      * @param {商品id} 
      * @return: 
      */
-    public function get_commodity($commodity_id){
+    public function get_Commodity($commodity_id){
         // 获取商品基本信息
         $original_commodity = DB::table('commodity_spu')->where('commodity_id',$commodity_id)->get();
         $commodity = json_decode(json_encode($original_commodity),true); 
         // 商品规格信息
-        $specification = self::get_commodity_sku($commodity_id);
+        $specification = self::get_Commodity_Sku($commodity_id);
         // 商品存量信息
-        $stock = self::get_stock($commodity_id);
+        $stock = self::get_Stock($commodity_id);
 
         // 获取商品评论
         $comment_Class = new CommentController;
         $comment = $comment_Class->get_Comment($commodity_id);
 
+        // 获取推荐商品
+        $recommend = self::recommend_Commodity();
+        
         // (拼接)   商品信息 + 规格组合 + 存量
         $commodity['guige'] = $specification;   
         $commodity['stock'] = $stock;
         $commodity['comment'] = $comment;
+        $commodity['recommend'] = $recommend;
         return $commodity;
     }
 
@@ -46,7 +50,7 @@ class CommodityController extends Controller
      * @param {商品id} 
      * @return: 
      */
-    public function get_commodity_sku($commodity_id){
+    public function get_Commodity_Sku($commodity_id){
         // 获取商品对应的规格id 名称
         $original_Data_Id_Name = DB::table('specification_spu as spu')
                             ->where('spu.commodity_id',$commodity_id)
@@ -86,7 +90,7 @@ class CommodityController extends Controller
      * @param {商品id} 
      * @return: 
      */
-    public function get_stock($commodity_id){
+    public function get_Stock($commodity_id){
         $original_Data = DB::table('stock')->select('commodity_id','guige_zuhe','stock','unit_price')->get();
         $data = json_decode(json_encode($original_Data),true);
         
@@ -107,7 +111,7 @@ class CommodityController extends Controller
      * @param {} 
      * @return: 
      */
-    public function get_commodity_class(){
+    public function get_Commodity_Class(){
         
     }
 
@@ -116,8 +120,34 @@ class CommodityController extends Controller
      * @param {} 
      * @return: 
      */
-    public function get_class_commodity(){
+    public function get_Class_Commodity($class_id){
+        // 获取数据
+        $original_Data = DB::table('commodity_spu')
+            ->where('class_id','=',$class_id)
+            ->select('commodity_id')
+            ->get();
+        // stdClass 转换为 array
+        $data = json_decode(json_encode($original_Data),true);
         
+        // 保存所有商品id
+        $data_array = [];
+        foreach ($data as  $line) {
+            foreach ($line as $key => $value) {
+                $data_array[] = $value;
+            }
+        }
+      
+        // 转换数据格式
+        // $commodity_id = array_column($data,'');
+        
+        // 根据商品id 获取基本信息
+        $data = self::get_Commodity_Basic($data_array);
+        
+        return response()->json([
+            'code'=>'200',
+            'message'=> '获取商品分类成功',
+            'data'=>$data
+        ]);
     }
 
     /**
@@ -154,7 +184,24 @@ class CommodityController extends Controller
      * @return: 
      */
     public function get_Brand_Commodity($brand_id){
+        // 获取数据
+        $original_Data = DB::table('commodity_spu')
+            ->where('brand_id','=',$brand_id)
+            ->select('commodity_id')
+            ->get();
+        // stdClass 转换为 array
+        $data = json_decode(json_encode($original_Data),true);
+        // 转换数据格式
+        $commodity_id = array_column($data,'commodity_id');
         
+        // 根据商品id 获取基本信息
+        $data = self::get_Commodity_Basic($commodity_id);
+
+        return response()->json([
+            'code'=>'200',
+            'message'=> '获取商品分类成功',
+            'data'=>$data
+        ]);
     }
 
     /**
@@ -171,11 +218,38 @@ class CommodityController extends Controller
      * @param {商品id} 
      * @return: 
      */
-    public function commodity_log($commodity_id){
+    public function commodity_Log($commodity_id){
         
     }
 
     
+    /**
+     * @获取推荐商品: 
+     * @param {type} 
+     * @return: 
+     */
+    public function recommend_Commodity(){
+        $original_Data = DB::table('commodity_spu')
+                            ->where('recommend',true)
+                            ->paginate(15);
+        $data = json_decode(json_encode($original_Data),true);
+
+        return $data;
+    }
     
-    
+
+    /**
+     * @获取商品基本信息: 
+     * @param {type} 
+     * @return: 
+     */
+    public function get_Commodity_Basic($commodity_id_array){
+      
+        $original_Data = DB::table('commodity_spu')
+                            ->whereIn('commodity_id',$commodity_id_array)
+                            ->select('commodity_id','name','Introduction','image')
+                            ->get();
+        $data = json_decode(json_encode($original_Data),true);
+        return $data;
+    }
 }

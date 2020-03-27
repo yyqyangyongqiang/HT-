@@ -2,7 +2,7 @@
 /*
  * @Author: 笑脸
  * @Date: 2020-03-23 19:39:08
- * @LastEditTime: 2020-03-25 17:53:08
+ * @LastEditTime: 2020-03-25 22:26:33
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Project\yalv\app\Http\Controllers\ClassController.php
@@ -72,8 +72,19 @@ class ClassController extends Controller
      * @param {一级分类id} 
      * @return: 
      */
-    public function get_Next_Class(){
-        return DB::table('commodity_class')->pluck('id','class_name','superior_id');
+    public function get_Next_Class($first_Class){
+        $original_Data= DB::table('commodity_class')
+                            ->where('superior_id',$first_Class)
+                            ->select('superior_id','class_name','class_big_image','class_image')
+                            ->get();
+        $data_array = json_decode(json_encode($original_Data), true);
+
+        return response()->json([
+            'code'=>'200',
+            'message'=>'获取分类成功',
+            'data'=>$data_array
+        ]);
+        
     }
 
     /**
