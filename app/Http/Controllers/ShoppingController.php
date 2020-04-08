@@ -2,7 +2,7 @@
 /*
  * @Author: your name
  * @Date: 2020-03-23 20:53:02
- * @LastEditTime: 2020-03-27 12:56:23
+ * @LastEditTime: 2020-03-28 19:12:33
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Project\yalv\app\Http\Controllers\ShoppingController.php
@@ -25,7 +25,7 @@ class ShoppingController extends Controller
         // 获取数据 连接 商品表 连接条件为商品id 为了获取商品图片
         $original_Data = DB::table('shopping_cart as cart')
                             ->where('user_id','=',$user_id)
-                            ->leftJoin('commodity_spu as spu','cart.commodity_id','=','spu.commodity_id')
+                            ->leftJoin('commodity_spu as spu',' cart.commodity_id','=','spu.commodity_id')
                             ->select('cart.commodity_id','cart.user_id','cart.amount','cart.unit_price','cart.spu_zuhe','spu.image')
                             ->get();
         // 转换数据格式

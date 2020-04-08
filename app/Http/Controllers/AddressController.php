@@ -2,7 +2,7 @@
 /*
  * @Author: your name
  * @Date: 2020-03-23 21:19:45
- * @LastEditTime: 2020-03-27 17:57:51
+ * @LastEditTime: 2020-03-29 17:55:02
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Project\yalv\app\Http\Controllers\AddressController.php
@@ -12,6 +12,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use App\Address;
 
 class AddressController extends Controller
 {
@@ -41,27 +42,22 @@ class AddressController extends Controller
      * @return: 
      */
     public function add_Address(Request $request){
-        // 获取参数
-        $user_id = $request->request->get('user_id');
-        $province = $request->request->get('province');
-        $city = $request->request->get('city');
-        $county = $request->request->get('county');
-        $specific_address = $request->request->get('specific_address');
-        $name = $request->request->get('name');
-        $phone = $request->request->get('phone');
+        // 创建新模型实例
+        $address = new Address;
 
-        $original_Data = DB::table('address')
-            ->insert([
-                'user_id'=>$user_id,
-                'province'=>$province,
-                'city'=>$city,
-                "county"=>$county,
-                "specific_address"=>$specific_address,
-                "name"=>$name,
-                "phone"=>$phone,
-            ]);
+        // 给实例设置属性
+        $address->user_id = $request->user_id;
+        $address->province = $request->province;
+        $address->city = $request->city;
+        $address->county = $request->county;
+        $address->specific_address = $request->specific_address;
+        $address->name = $request->name;
+        $address->phone = $request->phone;
 
-        if($original_Data != 0){
+        // 保存
+        $status = $address->save();
+
+        if($status){
             return response()->json([
                 'code'=>'200',
                 'message'=>'新增地址成功',

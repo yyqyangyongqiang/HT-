@@ -2,7 +2,7 @@
 /*
  * @Author: your name
  * @Date: 2020-02-21 12:08:25
- * @LastEditTime: 2020-03-27 18:31:54
+ * @LastEditTime: 2020-03-27 18:52:27
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Project\yalv\routes\web.php
@@ -71,7 +71,7 @@ Route::get('address/{user_id}','AddressController@get_Address');
 // 新增地址
 Route::post('add_address','AddressController@add_Address');
 // 删除地址
-Route::delete('del_address/{user_id}','AddressController@delete_Address');
+Route::delete('del_address','AddressController@delete_Address');
 // 修改地址
 Route::post('alter_address','AddressController@set_Address');
 
